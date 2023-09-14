@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./login.module.css";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import prisma from "@/utils/connect";
 
 const LoginPage = () => {
   const { data, status } = useSession();
