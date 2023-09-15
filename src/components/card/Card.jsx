@@ -6,24 +6,23 @@ import Link from "next/link";
 const Card = ({ key, item }) => {
   return (
     <div className={styles.container}>
-      <div className={styles.imageContainer}>
-        <Image src="/p1.jpeg" alt="" fill className={styles.image} />
-      </div>
+      {item.img && (
+        <div className={styles.imageContainer}>
+          <Image src={item.img} alt="" fill className={styles.image} />
+        </div>
+      )}
       <div className={styles.textContainer}>
         <div className={styles.detail}>
-          <span className={styles.date}>7.09.23 - </span>
-          <span className={styles.category}>CULTURE</span>
+          <span className={styles.date}>
+            {item.createdAt.substring(0, 10)} -
+          </span>
+          <span className={styles.category}> {item.catSlug.toUpperCase()}</span>
         </div>
-        <Link href="/">
+        <Link href={`/posts/${item.slug}`}>
           <h1>{item.title}</h1>
         </Link>
-        <p className={styles.desc}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque ab
-          laborum eveniet doloremque nostrum tempora inventore repellendus!
-          Architecto consequatur vitae maxime libero cumque doloribus
-          reprehenderit omnis repudiandae aspernatur! Sequi, sit?
-        </p>
-        <Link href="/" className={styles.link}>
+        <p className={styles.desc}>{item.desc.substring(0, 60)}</p>
+        <Link href={`/posts/${item.slug}`} className={styles.link}>
           Read More
         </Link>
       </div>
