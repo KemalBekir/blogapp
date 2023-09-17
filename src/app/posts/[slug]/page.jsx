@@ -18,7 +18,7 @@ const getData = async (slug) => {
 const SinglePage = async ({ params }) => {
   const { slug } = params;
 
-  const data = getData(slug);
+  const data = await getData(slug);
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
@@ -53,9 +53,8 @@ const SinglePage = async ({ params }) => {
             className={styles.desc}
             dangerouslySetInnerHTML={{ __html: data?.desc }}
           />
-
           <div className={styles.comment}>
-            <Comments />
+            <Comments postSlug={slug} />
           </div>
         </div>
         <Menu />
