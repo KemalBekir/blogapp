@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./comments.module.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -28,12 +28,14 @@ const Comments = ({ postSlug }) => {
   );
 
   const [desc, setDesc] = useState("");
+  const descRef = useRef();
 
   const handleSubmit = async () => {
     await fetch("/api/comments", {
       method: "POST",
       body: JSON.stringify({ desc, postSlug }),
     });
+    descRef.current.value = "";
     mutate();
   };
 
@@ -43,6 +45,7 @@ const Comments = ({ postSlug }) => {
       {status === "authenticated" ? (
         <div className={styles.write}>
           <textarea
+            ref={descRef}
             placeholder="write a comment..."
             className={styles.input}
             onChange={(e) => setDesc(e.target.value)}
