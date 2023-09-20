@@ -1,4 +1,22 @@
 .container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  margin-bottom: 50px;
+  padding: 10px 20px;
+  margin-left: 50px;
+  width: max-content;
+  border-radius: 15px;
+  font-size: 18px;
+  color: gray;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.option {
 }
 
 .editor {
@@ -41,6 +59,7 @@
   border: none;
   outline: none;
   background-color: transparent;
+  color: var(--textColor);
 }
 
 .input::placeholder {
